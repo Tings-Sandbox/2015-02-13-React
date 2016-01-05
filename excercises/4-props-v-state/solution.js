@@ -17,6 +17,7 @@ var Tabs = React.createClass({
     onActivateTab: React.PropTypes.func.isRequired,
   },
 
+  //notice that this function calls a function that will handle the state, but doesn't affect state directly. because we're in a child component
   handleTabClick (activeTabIndex) {
     this.props.onActivateTab(activeTabIndex);
   },
@@ -58,6 +59,7 @@ var Tabs = React.createClass({
 });
 
 var App = React.createClass({
+  //state is moved to the parent component
   getInitialState () {
     return {
       activeTabIndex: 0
@@ -73,6 +75,7 @@ var App = React.createClass({
       <div>
         <h1>Props v. State</h1>
         <Tabs
+          //state and functions handling state are passed as props to child components
           data={this.props.tabs}
           activeTabIndex={this.state.activeTabIndex}
           onActivateTab={this.handleActivateTab}

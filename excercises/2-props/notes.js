@@ -1,3 +1,14 @@
+propTypes look like this:
+  propTypes: {
+    user: React.PropTypes.shape({
+      email: React.PropTypes.string.isRequired,
+      name: React.PropTypes.string.isRequired,
+      id: React.PropTypes.number.isRequired
+    }).isRequired
+  },
+and are useful for error checking
+
+---------------------------------
 var React = require('react');
 var md5 = require('MD5');
 var validateEmail = require('./validateEmail');
@@ -43,7 +54,7 @@ var Gravatar = React.createClass({
   render () {
     var { user, size } = this.props;
     var hash = md5(user.email);
-    var url = `${GRAVATAR_URL}/${hash}?s=${size*2}`;
+    var url = `${GRAVATAR_URL}/${hash}?s=${size*2}`; //string interpolation
     return <img src={url} width={size} />;
   }
 });
@@ -51,7 +62,7 @@ var Gravatar = React.createClass({
 var App = React.createClass({
   render () {
     var users = USERS.map((user) => {
-      return <li><Gravatar user={user} size={36} /> {user.name}</li>
+      return <li><Gravatar user={user} size={36} /> {user.name}</li> //notice that the Gravatar component was inserted into the html
     });
     return (
       <div>
@@ -64,6 +75,10 @@ var App = React.createClass({
 
 ////////////////////////////////////////////////////////////////////////////////
 // we can validate propTypes to help others consume our components
+
+//the props are passed like html properties. and we can validate them in the implementation of the class
+
+//ES6 destructuring: [a,b] = [1, 2] allows us to set variable names to each element in [1,2]
 var Gravatar = React.createClass({
   propTypes: {
     user: React.PropTypes.shape({
@@ -97,6 +112,10 @@ var App = React.createClass({
 
 ////////////////////////////////////////////////////////////////////////////////
 // we can create our own propTypes
+
+//validateEmail is gotten from an outside library
+//warning(validation, error_message)
+
 var emailType = (props, propName, componentName) => {
   warning(
     validateEmail(props.email),

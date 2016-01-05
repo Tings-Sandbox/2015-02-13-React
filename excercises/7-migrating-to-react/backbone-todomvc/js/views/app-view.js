@@ -56,10 +56,16 @@ var app = app || {};
 				this.$main.show();
 				this.$footer.show();
 
-				this.$footer.html(this.statsTemplate({
-					completed: completed,
-					remaining: remaining
-				}));
+				React.render(React.createElement(app.Stats, {
+					completed : completed, 
+					remaining : remaining
+				}), this.$footer[0]);
+
+				//Backbone version
+				// this.$footer.html(this.statsTemplate({
+				// 	completed: completed,
+				// 	remaining: remaining
+				// }));
 
 				this.$('#filters li a')
 					.removeClass('selected')

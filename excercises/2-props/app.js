@@ -35,9 +35,23 @@ var emailType = (props, propName, componentName) => {
   );
 };
 
+var sizeType = (props, propName, componentName) => {
+  warning(
+    !isNaN(parseInt(props[propName])),
+    `Invalid prop "${propName}", cant convert "${props[propName]}" to number. Check the render method of "${componentName}".`
+  );
+};
+
 var Gravatar = React.createClass({
   propTypes: {
-    email: emailType
+
+    user: React.PropTypes.shape({
+      email: emailType,
+      name: React.PropTypes.string.isRequired,
+      id: React.PropTypes.number.isRequired
+    }).isRequired,
+
+    size: sizeType
   },
 
   getDefaultProps () {
@@ -47,8 +61,8 @@ var Gravatar = React.createClass({
   },
 
   render () {
-    var { email, size } = this.props;
-    var hash = md5(email);
+    var { user, size } = this.props;
+    var hash = md5(user.email);
     var url = `${GRAVATAR_URL}/${hash}?s=${size*2}`;
     return <img src={url} width={size} />;
   }
@@ -56,10 +70,10 @@ var Gravatar = React.createClass({
 
 var App = React.createClass({
   render () {
-    var users = USERS.map((user) => {
+    var users = this.props.users.map((user) => {
       return (
         <li key={user.id}>
-          <Gravatar email={user.email} size={36} /> {user.name}
+          <Gravatar user={user} size={36} /> {user.name}
         </li>
       );
     });
@@ -72,7 +86,7 @@ var App = React.createClass({
   }
 });
 
-React.render(<App />, document.body);
+React.render(<App users={USERS}/>, document.body);
 
-//require('./tests').run(Gravatar, emailType);
+require('./tests').run(Gravatar, emailType);
 

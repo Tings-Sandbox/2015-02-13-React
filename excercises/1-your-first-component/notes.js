@@ -1,3 +1,22 @@
+var HelloWorld = React.createClass({
+  render: function() {
+    return (
+      <p>
+        Hello, <input type="text" placeholder="Your name here" />!
+        It is {this.props.date.toTimeString()} //this refers to HelloWorld. also, notice that the javascript goes into braces
+      </p>
+    );
+  }
+});
+
+setInterval(function() {
+  ReactDOM.render(
+    <HelloWorld date={new Date()} />,
+    document.getElementById('example')
+  );
+}, 500);
+
+_________________________________________________________________________________
 var React = require('react');
 
 ////////////////////////////////////////////////////////////////////////////////

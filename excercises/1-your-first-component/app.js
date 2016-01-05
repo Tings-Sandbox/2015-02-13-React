@@ -1,13 +1,4 @@
-////////////////////////////////////////////////////////////////////////////////
-// Excercise:
-//
-// Render `DATA` to the page
-// - put the title in an h1
-// - only render mexican food (hint: arrays have a "filter" method)
-// - sort the items in alphabetical order by name
-//   (might want to use `sort-by` https://github.com/staygrimm/sort-by#example)
-////////////////////////////////////////////////////////////////////////////////
-
+require('./tests');
 var React = require('react');
 var sortBy = require('sort-by');
 
@@ -23,11 +14,24 @@ var DATA = {
 
 var Menu = React.createClass({
   render () {
-    return null;
+    
+    var items = DATA.items.filter((item) => {
+      return item.type === 'mexican';
+    })
+    .sort(sortBy('name'))
+    .map((item) => {
+      return <li key={item.id}>{item.name}</li>;
+    });
+
+    return (
+      <div>
+        <h1>{DATA.title}</h1>
+        <ul>{items}</ul>
+      </div>
+    );
   }
 });
 
 React.render(<Menu/>, document.body, () => {
   require('./tests').run();
 });
-

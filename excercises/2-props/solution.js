@@ -20,7 +20,8 @@ var emailType = (props, propName, componentName) => {
 var sizeType = (props, propName, componentName) => {
   warning(
     !isNaN(parseInt(props[propName])),
-    `Invalid prop "${propName}", can't convert "${props[propName]}" to number. Check the render method of "${componentName}".`
+    //parseInt(" 0xF", 16); returns 15
+    `Invalid prop "${propName}", cant convert "${props[propName]}" to number. Check the render method of "${componentName}".`
   );
 };
 
@@ -62,5 +63,6 @@ var App = React.createClass({
   }
 });
 
+//USERS is being passed as a prop
 React.render(<App users={USERS}/>, document.body);
 

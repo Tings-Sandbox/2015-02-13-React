@@ -8,6 +8,7 @@
 var React = require('react');
 var Router = require('react-router');
 var ContactStore = require('./ContactStore');
+
 var {
   Route,
   DefaultRoute,
@@ -15,6 +16,7 @@ var {
   RouteHandler,
   Link
 } = Router;
+
 
 var App = React.createClass({
   getInitialState: function () {
@@ -54,7 +56,7 @@ var App = React.createClass({
           <ul>
             {contacts}
           </ul>
-          <Link to="/nothing-here">Invalid Link (not found)</Link>
+          <Link to="about">About</Link>
         </div>
         <div className="Content">
           <RouteHandler/>
@@ -153,9 +155,9 @@ var NewContact = React.createClass({
   }
 });
 
-var NotFound = React.createClass({
+var About = React.createClass({
   render: function () {
-    return <h2>Not found</h2>;
+    return <h2>The About Section will talk about what this app is about.</h2>;
   }
 });
 
@@ -164,7 +166,7 @@ var routes = (
     <DefaultRoute handler={Index}/>
     <Route name="new" path="contact/new" handler={NewContact}/>
     <Route name="contact" path="contact/:id" handler={Contact}/>
-    <NotFoundRoute handler={NotFound}/>
+    <Route name="about" path="about" handler={About}/>
   </Route>
 );
 

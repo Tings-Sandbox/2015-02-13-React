@@ -1,3 +1,19 @@
+Props Vs State Vs Store
+
+state: for changes thats only related to itself/ children
+prop: for properties that dont change
+store: for changes that need to be persistent and accessed via others
+
+in this video, he was trying to set a button 'toggleall' that will toggle both of the divs.
+however, he was having trouble because the child was handling its own state, and the button was trying to handle the same state. it would require two way binding
+
+to move the state up / add a property that tells the div what data to show
+switch out this.state to this.props and then pass the state as a prop through the parent component
+
+React Life Cycle
+*componentDidUpdate () { //function to fire off when prop is done updating}
+
+-------------------------------
 // add toggleAll
 // need isOpen
 // state gets out of whack
@@ -63,7 +79,9 @@ var App = React.createClass({
     };
   },
 
+//this is a method to toggle all states 
   toggleAll () {
+    //to declare propertie names in an object 
     var { toggleStates, openAll } = this.state;
     var newOpenAll = !openAll;
     var newStates = Object.keys(toggleStates).reduce((newStates, key) => {
@@ -81,7 +99,7 @@ var App = React.createClass({
     toggleStates[id] = !toggleStates[id];
     this.setState({ toggleStates });
     var keys = Object.keys(toggleStates);
-    var areOpen = keys.filter(key => toggleStates[key]);
+    var areOpen = keys.filter(key => toggleStates[key]));
     if (areOpen.length === keys.length) {
       this.setState({ openAll: true });
     }
