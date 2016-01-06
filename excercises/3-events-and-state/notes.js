@@ -2,6 +2,7 @@ Notes:
 * these states are found in the component i.e. React.createClass({})
 * set your initial state using 'getInitialState'
 * change the state using onClick={/*function*/} and this.setState({})
+* can also listen for changes in <input> or <textarea> using onChange prop
 
 var App = React.createClass({
 
@@ -32,7 +33,18 @@ var App = React.createClass({
 
 //**on props: countries is added as a prop
 React.render(<App countries={DATA}/>, document.body);
-
+--------------------------------------------------------------------
+ //getting values from input boxes
+  getInitialState: function() {
+    return {value: 'Hello!'};
+  },
+  handleChange: function(event) {
+    this.setState({value: event.target.value});
+  },
+  render: function() {
+    var value = this.state.value;
+    return <input type="text" value={value} onChange={this.handleChange} />;
+  }
 
 -------------------------------------------------------------------
 var React = require('react');
