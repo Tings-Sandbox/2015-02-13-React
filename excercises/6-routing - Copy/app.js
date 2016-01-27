@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////////////////
-// My React Website
+// Excercise:
 //
-// Create a sidebar with the links (which you'll adjust with CSS, fancy transition effects)
-// Make the links respond with the information/ content
+// Add a route to "about" and link to it above the "New Contact"
+// link on the left sidebar.
 ////////////////////////////////////////////////////////////////////////////////
 
 var React = require('react');

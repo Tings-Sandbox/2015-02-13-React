@@ -1,7 +1,5 @@
 //var API = 'http://localhost:3000/contacts';
 var API = 'http://addressbook-api.herokuapp.com/contacts';
-//API = {"contacts":[{"id":"jack","first":"Jack","last":"Bauer","avatar":"http://ryanflorence.com/jsconf-avatars/avatars/jack.jpg"},{"first":"Ting","last":"Deng","id":"pkq37"},{"first":"Happiness!","last":"Key!","id":"72mup"}]}
-//API.contacts = an array of objects that contain your props
 
 var _contacts = {};
 var _changeListeners = [];

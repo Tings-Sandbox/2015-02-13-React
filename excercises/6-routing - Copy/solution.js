@@ -1,14 +1,13 @@
 ////////////////////////////////////////////////////////////////////////////////
-// My React Website
+// Excercise:
 //
-// Create a sidebar with the links (which you'll adjust with CSS, fancy transition effects)
-// Make the links respond with the information/ content
+// Add a route to "about" and link to it above the "New Contact"
+// link on the left sidebar.
 ////////////////////////////////////////////////////////////////////////////////
 
 var React = require('react');
 var Router = require('react-router');
 var ContactStore = require('./ContactStore');
-
 var {
   Route,
   DefaultRoute,
@@ -16,7 +15,6 @@ var {
   RouteHandler,
   Link
 } = Router;
-
 
 var App = React.createClass({
   getInitialState: function () {
@@ -52,11 +50,12 @@ var App = React.createClass({
     return (
       <div className="App">
         <div className="ContactList">
+          <Link to="about">About</Link>
           <Link to="new">New Contact</Link>
           <ul>
             {contacts}
           </ul>
-          <Link to="about">About</Link>
+          <Link to="/nothing-here">Invalid Link (not found)</Link>
         </div>
         <div className="Content">
           <RouteHandler/>
@@ -155,18 +154,25 @@ var NewContact = React.createClass({
   }
 });
 
+var NotFound = React.createClass({
+  render: function () {
+    return <h2>Not found</h2>;
+  }
+});
+
 var About = React.createClass({
   render: function () {
-    return <h2>The About Section will talk about what this app is about.</h2>;
+    return <h2>About</h2>;
   }
 });
 
 var routes = (
   <Route handler={App}>
     <DefaultRoute handler={Index}/>
+    <Route name="about" handler={About}/>
     <Route name="new" path="contact/new" handler={NewContact}/>
     <Route name="contact" path="contact/:id" handler={Contact}/>
-    <Route name="about" path="about" handler={About}/>
+    <NotFoundRoute handler={NotFound}/>
   </Route>
 );
 
