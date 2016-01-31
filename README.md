@@ -98,47 +98,14 @@ var emailType = (props, propName, componentName) => {
 };
 ```
 
-##3.Events and States
-
-* these states are found in the component i.e. React.createClass({})
+##3.Events and States1
+* these states are found in the component i.e. React.createClass
 * set your initial state using 'getInitialState'
-* change the state using onClick={/*function*/} and this.setState({})
-* can also listen for changes in <input> or <textarea> using onChange prop
+* change the state using onClick and this.setState
+* can also listen for changes in input or textarea using onChange prop
 
+For more info, see [the actual code](/exercises/3-events-and-state/app.js)
 
-```
-var App = React.createClass({
-
-  //setting default states
-  getInitialState: function() {
-    return {
-      activeTabIndex: 0,
-    }
-  },
-
-  //changing states
-  toggle: function(activeTabIndex){
-    //**ES6 allows you to set the activeTabIndex to the parameter if they're of the same name
-    this.setState({ activeTabIndex});
-  },
-
-    renderTabs () {
-    //**on props: referencing the props added to the App component
-    return this.props.countries.map((country, index) => {
-      return (
-        //getting values of state using this.state.stateName
-        <div onClick={this.toggle.bind(this, index)} style={index === this.state.activeTabIndex ? styles.activeTab : styles.tab}>
-          {country.name}
-        </div>
-      );
-    });
-  }),
-
-
-//**on props: countries is added as a prop
-React.render(<App countries={DATA}/>, document.body);
-
-```
 
 ##4.Props vs State
 
