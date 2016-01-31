@@ -105,6 +105,7 @@ var emailType = (props, propName, componentName) => {
 * change the state using onClick={/*function*/} and this.setState({})
 * can also listen for changes in <input> or <textarea> using onChange prop
 
+
 ```
 var App = React.createClass({
 
@@ -131,10 +132,12 @@ var App = React.createClass({
         </div>
       );
     });
-  },
+  }),
+
 
 //**on props: countries is added as a prop
 React.render(<App countries={DATA}/>, document.body);
+
 ```
 
 ##4.Props vs State
